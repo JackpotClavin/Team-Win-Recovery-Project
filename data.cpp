@@ -885,6 +885,7 @@ void DataManager::SetDefaultValues()
 	mValues.insert(make_pair(TW_USE_COMPRESSION_VAR, make_pair("0", 1)));
 	mValues.insert(make_pair(TW_SHOW_SPAM_VAR, make_pair("0", 1)));
 	mValues.insert(make_pair(TW_TIME_ZONE_VAR, make_pair("CST6CDT", 1)));
+	mValues.insert(make_pair(TW_RTC_TIME_DIFF, make_pair("0", 1)));
 	mValues.insert(make_pair(TW_SORT_FILES_BY_DATE_VAR, make_pair("0", 1)));
 	mValues.insert(make_pair(TW_GUI_SORT_ORDER, make_pair("1", 1)));
 	mValues.insert(make_pair(TW_RM_RF_VAR, make_pair("0", 1)));
@@ -968,7 +969,10 @@ int DataManager::GetMagicValue(const string varName, string& value)
 		struct tm *current;
 		time_t now;
 		int tw_military_time;
+		int tw_rtc_time_diff;
+		GetValue(TW_RTC_TIME_DIFF, tw_rtc_time_diff);
 		now = time(0);
+		now += tw_rtc_time_diff;
 		current = localtime(&now);
 		GetValue(TW_MILITARY_TIME, tw_military_time); 
 		if (current->tm_hour >= 12)

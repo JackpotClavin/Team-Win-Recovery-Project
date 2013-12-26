@@ -999,7 +999,10 @@ int TWFunc::Wait_For_Child(pid_t pid, int *status, string Child_Name) {
 
 string TWFunc::Get_Current_Date() {
 	string Current_Date;
+	int tw_rtc_time_diff;
+	DataManager::GetValue(TW_RTC_TIME_DIFF, tw_rtc_time_diff);
 	time_t seconds = time(0);
+	seconds += tw_rtc_time_diff;
 	struct tm *t = localtime(&seconds);
 	char timestamp[255];
 	sprintf(timestamp,"%04d-%02d-%02d--%02d-%02d-%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);

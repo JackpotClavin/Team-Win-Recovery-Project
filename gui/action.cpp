@@ -601,6 +601,32 @@ int GUIAction::doAction(Action action, int isThreaded /* = 0 */)
 		return 0;
 	}
 
+	if (function == "set_time_and_date") {
+		
+		struct tm tm;
+		memset(&tm, 0, sizeof(struct tm)); //zero-out tm to get rid of junk which might interfere with setting time
+		time_t rtc_now, actual_now;
+		string ReceivedDate;
+		char time_date[32];
+		int difference;
+
+		DataManager::GetValue(TW_TIME_DATE_GUI, ReceivedDate);
+		LOGINFO("Received date: %s\n", ReceivedDate.c_str());
+
+		strcpy(time_date, ReceivedDate.c_str());
+
+		strptime(time_date, "%H:%M %m/%d/%Y", &tm);
+		actual_now = mktime(&tm);
+
+		rtc_now = time(0);
+
+		difference = actual_now - rtc_now;
+
+		DataManager::SetValue(TW_RTC_TIME_DIFF, difference);
+
+		return 0;
+	}
+
 	if (function == "togglestorage") {
 		LOGERR("togglestorage action was deprecated from TWRP\n");
 		if (arg == "internal") {

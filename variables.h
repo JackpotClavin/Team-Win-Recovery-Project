@@ -85,6 +85,7 @@
 #define TW_SIGNED_ZIP_VERIFY_VAR    "tw_signed_zip_verify"
 #define TW_REBOOT_AFTER_FLASH_VAR   "tw_reboot_after_flash_option"
 #define TW_TIME_ZONE_VAR            "tw_time_zone"
+#define TW_RTC_TIME_DIFF            "tw_rtc_time_diff"
 #define TW_RM_RF_VAR                "tw_rm_rf"
 
 #define TW_BACKUPS_FOLDER_VAR       "tw_backups_folder"
@@ -99,6 +100,7 @@
 #define TW_TIME_ZONE_GUISEL         "tw_time_zone_guisel"
 #define TW_TIME_ZONE_GUIOFFSET      "tw_time_zone_guioffset"
 #define TW_TIME_ZONE_GUIDST         "tw_time_zone_guidst"
+#define TW_TIME_DATE_GUI            "tw_time_date_gui"
 
 #define TW_ACTION_BUSY              "tw_busy"
 
