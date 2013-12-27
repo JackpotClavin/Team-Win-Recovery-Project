@@ -886,6 +886,7 @@ void DataManager::SetDefaultValues()
 	mValues.insert(make_pair(TW_SHOW_SPAM_VAR, make_pair("0", 1)));
 	mValues.insert(make_pair(TW_TIME_ZONE_VAR, make_pair("CST6CDT", 1)));
 	mValues.insert(make_pair(TW_RTC_TIME_DIFF, make_pair("0", 1)));
+	mValues.insert(make_pair(TW_TIME_DATE_PM, make_pair("0", 0)));
 	mValues.insert(make_pair(TW_SORT_FILES_BY_DATE_VAR, make_pair("0", 1)));
 	mValues.insert(make_pair(TW_GUI_SORT_ORDER, make_pair("1", 1)));
 	mValues.insert(make_pair(TW_RM_RF_VAR, make_pair("0", 1)));

@@ -609,6 +609,8 @@ int GUIAction::doAction(Action action, int isThreaded /* = 0 */)
 		string ReceivedDate;
 		char time_date[32];
 		int difference;
+		int tw_military_time;
+		int tw_time_date_pm;
 
 		DataManager::GetValue(TW_TIME_DATE_GUI, ReceivedDate);
 		LOGINFO("Received date: %s\n", ReceivedDate.c_str());
@@ -616,6 +618,12 @@ int GUIAction::doAction(Action action, int isThreaded /* = 0 */)
 		strcpy(time_date, ReceivedDate.c_str());
 
 		strptime(time_date, "%H:%M %m/%d/%Y", &tm);
+
+		DataManager::GetValue(TW_TIME_DATE_PM, tw_time_date_pm);
+		DataManager::GetValue(TW_MILITARY_TIME, tw_military_time); 
+		if (tw_time_date_pm == 1 && tw_military_time == 0)
+			tm.tm_hour += 12;
+
 		actual_now = mktime(&tm);
 
 		rtc_now = time(0);

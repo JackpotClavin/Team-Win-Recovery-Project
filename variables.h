@@ -101,6 +101,7 @@
 #define TW_TIME_ZONE_GUIOFFSET      "tw_time_zone_guioffset"
 #define TW_TIME_ZONE_GUIDST         "tw_time_zone_guidst"
 #define TW_TIME_DATE_GUI            "tw_time_date_gui"
+#define TW_TIME_DATE_PM             "tw_time_date_pm"
 
 #define TW_ACTION_BUSY              "tw_busy"
 

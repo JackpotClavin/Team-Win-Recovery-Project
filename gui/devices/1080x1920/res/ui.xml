@@ -2460,8 +2460,7 @@
 				<font resource="font" color="%button_text_color%" />
 				<text>Set Time</text>
 				<image resource="main_button" />
-				<!-- <action function="restoredefaultsettings"></action> -->
-				<action function="page">timeanddate</action>
+				<action function="page">timeanddatemtcheck</action>
 			</object>
 
 			<object type="button">
@@ -2603,7 +2602,83 @@
 			<object type="template" name="footer" />
 		</page>
 
-		<page name="timeanddate">
+		<page name="timeanddatemtcheck">
+			<object type="action">
+				<condition var1="tw_military_time" var2="1" />
+				<actions>
+					<action function="page">timeanddatemilitary</action>
+				</actions>
+			</object>
+
+			<object type="action">
+				<condition var1="tw_military_time" op="!=" var2="1" />
+				<actions>
+					<action function="page">timeanddatenonmilitary</action>
+				</actions>
+			</object>
+		</page>
+
+		<page name="timeanddatenonmilitary">
+			<object type="template" name="header" />
+
+			<object type="text" color="%text_color%">
+				<font resource="font" />
+				<placement x="%center_x%" y="%row1_header_y%" placement="5" />
+				<text>Change Date and Time?</text>
+			</object>
+
+			<object type="text" color="%text_color%">
+				<font resource="font" />
+				<placement x="%center_x%" y="%row2_text_y%" placement="5" />
+				<text>Enter in hr:min mm/dd/yyyy format</text>
+			</object>
+
+			<object type="input">
+				<placement x="%col1_x%" y="%row3_text_y%" w="%input_width%" h="%input_height%" placement="0" />
+				<background color="%input_background_color%" />
+				<cursor color="%input_cursor_color%" hasfocus="1" width="%input_cursor_width%" />
+				<font resource="font" color="%text_color%" />
+				<text>%tw_time_date_gui%</text>
+				<data name="tw_time_date_gui" />
+				<restrict minlen="14" maxlen="16" allow="1234567890/: " />
+				<action function="set_time_and_date"></action>
+			</object>
+
+			<object type="checkbox">
+				<placement x="%col1_x%" y="%row2_y%" />
+				<font resource="font" color="%text_color%" />
+				<text>PM</text>
+				<data variable="tw_time_date_pm" />
+				<image checked="checkbox_true" unchecked="checkbox_false" />
+			</object>
+
+			<object type="button">
+				<highlight color="%highlight_color%" />
+				<placement x="%col2_x%" y="%row2_y%" />
+				<font resource="font" color="%button_text_color%" />
+				<text>Cancel</text>
+				<image resource="main_button" />
+				<actions>
+					<action function="page">settings</action>
+				</actions>
+			</object>
+
+			<object type="template" name="keyboardtemplate" />
+
+			<object type="action">
+				<touch key="home" />
+				<action function="page">main</action>
+			</object>
+
+			<object type="action">
+				<touch key="back" />
+				<action function="page">settings</action>
+			</object>
+
+			<object type="template" name="footer" />
+		</page>
+
+		<page name="timeanddatemilitary">
 			<object type="template" name="header" />
 
 			<object type="text" color="%text_color%">
